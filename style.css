@@ -44,6 +44,12 @@ body {
   letter-spacing: -0.5px;
 }
 .logo span { color: var(--gold); }
+.wallet-connect { display: flex; align-items: center; gap: 8px; }
+.btn-wallet { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 13px; transition: background 0.2s; }
+.btn-wallet:hover { background: rgba(255,255,255,0.25); }
+.wallet-connected { display: flex; align-items: center; gap: 8px; color: white; font-size: 13px; font-weight: 600; }
+.wallet-dot { width: 8px; height: 8px; background: #4CAF50; border-radius: 50%; }
+.network-badge { background: rgba(255,255,255,0.15); padding: 4px 8px; border-radius: 4px; font-size: 11px; }
 .header-stats {
   display: flex;
   gap: 24px;
