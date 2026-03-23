@@ -1,6 +1,8 @@
 # AfriPay -- Cross-Border Remittance Protocol for Africa
 
-**EthCapeTown 2026 Submission**
+**Synthesis 2026 — Agents That Pay**
+
+AfriPay is agentic infrastructure for cross-border payments. Local cash-out agents are autonomous economic actors with on-chain reputation, spending scopes, and settlement — the core vision of Synthesis's "Agents That Pay" track.
 
 ## The Problem
 
@@ -228,7 +230,7 @@ The South Africa -> Zimbabwe corridor is the most exploitative at 14.4% -- a wor
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/afripay-protocol.git
+git clone https://github.com/Akasxh/afripay-protocol.git
 cd afripay-protocol
 
 # Install dependencies
@@ -297,7 +299,7 @@ python3 -m http.server 8080 -d frontend/
 
 ## Team
 
-Built at EthCapeTown 2026.
+Built for Synthesis 2026.
 
 ## License
 

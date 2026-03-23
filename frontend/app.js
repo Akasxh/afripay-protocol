@@ -1,6 +1,81 @@
 // AfriPay Frontend -- Multi-View Tabbed Application
 // In production, this would connect to deployed contracts via ethers.js
 
+// ===================== WALLET CONNECTION =====================
+
+async function connectWallet() {
+  if (!window.ethereum) { showToast("Please install MetaMask"); return; }
+  try {
+    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+    const addr = accounts[0];
+    const chainId = await window.ethereum.request({ method: "eth_chainId" });
+    updateWalletUI(addr, parseInt(chainId, 16));
+    window.ethereum.on("accountsChanged", (accs) => { if (accs.length) updateWalletUI(accs[0], null); else resetWalletUI(); });
+    window.ethereum.on("chainChanged", (id) => updateWalletUI(null, parseInt(id, 16)));
+  } catch (e) { showToast("Wallet connection failed"); }
+}
+
+function updateWalletUI(addr, chainId) {
+  const section = document.getElementById("wallet-section");
+  const stored = section.dataset.addr || addr;
+  const storedChain = section.dataset.chain || chainId;
+  if (addr) section.dataset.addr = addr;
+  if (chainId) section.dataset.chain = chainId;
+  const displayAddr = (stored || addr);
+  const displayChain = parseInt(storedChain || chainId);
+  const short = displayAddr ? displayAddr.slice(0, 6) + "..." + displayAddr.slice(-4) : "";
+  const isBase = displayChain === 84532 || displayChain === 8453;
+  const networkName = displayChain === 84532 ? "Base Sepolia" : displayChain === 8453 ? "Base" : "Wrong Network";
+
+  section.replaceChildren();
+  const wrapper = document.createElement("div");
+  wrapper.className = "wallet-connected";
+
+  const dot = document.createElement("span");
+  dot.className = "wallet-dot";
+  wrapper.appendChild(dot);
+
+  const addrSpan = document.createElement("span");
+  addrSpan.textContent = short;
+  wrapper.appendChild(addrSpan);
+
+  const badge = document.createElement("span");
+  badge.className = "network-badge";
+  badge.textContent = networkName;
+  wrapper.appendChild(badge);
+
+  if (!isBase) {
+    const switchBtn = document.createElement("button");
+    switchBtn.className = "btn-wallet";
+    switchBtn.textContent = "Switch to Base";
+    switchBtn.addEventListener("click", switchToBase);
+    wrapper.appendChild(switchBtn);
+  }
+
+  section.appendChild(wrapper);
+}
+
+function resetWalletUI() {
+  const section = document.getElementById("wallet-section");
+  section.replaceChildren();
+  const btn = document.createElement("button");
+  btn.className = "btn-wallet";
+  btn.id = "connect-btn";
+  btn.textContent = "Connect Wallet";
+  btn.addEventListener("click", connectWallet);
+  section.appendChild(btn);
+}
+
+async function switchToBase() {
+  try {
+    await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: "0x14A34" }] });
+  } catch (e) {
+    if (e.code === 4902) {
+      await window.ethereum.request({ method: "wallet_addEthereumChain", params: [{ chainId: "0x14A34", chainName: "Base Sepolia", nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 }, rpcUrls: ["https://sepolia.base.org"], blockExplorerUrls: ["https://sepolia.basescan.org"] }] });
+    }
+  }
+}
+
 const COUNTRIES = {
   NG: "Nigeria", ZA: "South Africa", KE: "Kenya", GH: "Ghana",
   EG: "Egypt", ET: "Ethiopia", UG: "Uganda", TZ: "Tanzania",
