@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AfriPay cuts cross-border remittance fees from 8.9% to 0.5% using stablecoins on Ethereum L2s. Send money across Africa for 17x less.">
+  <meta property="og:title" content="AfriPay - Cross-Border Remittance Protocol for Africa">
+  <meta property="og:description" content="Africa loses $4.3B/year to remittance fees. AfriPay uses stablecoins on Base L2 to cut costs from 8.9% to 0.5% with a local agent cash-out network.">
+  <meta property="og:type" content="website">
+  <title>AfriPay - Cross-Border Remittance Protocol for Africa</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23007A4D'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Inter,sans-serif' font-weight='800' font-size='20' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">Afri<span>Pay</span></div>
+      <div class="header-stats">
+        <div class="stat-item">
+          <div class="stat-value" id="stat-volume">$0</div>
+          <div class="stat-label">Total Volume</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="stat-orders">0</div>
+          <div class="stat-label">Transactions</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="stat-saved">$0</div>
+          <div class="stat-label">Fees Saved</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Tab Navigation -->
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+      <button class="tab-btn" data-tab="agents">Agents</button>
+      <button class="tab-btn" data-tab="analytics">Analytics</button>
+      <button class="tab-btn" data-tab="how-it-works">How It Works</button>
+    </div>
+  </nav>
+
+  <!-- ===================== DASHBOARD VIEW ===================== -->
+  <div class="tab-view active" id="view-dashboard">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge">EthCapeTown 2026</div>
+      <h1>Send Money Across Africa for 0.5%</h1>
+      <p>Africa loses <strong>$4.3 billion/year</strong> to remittance fees averaging 8.9%. AfriPay uses stablecoins on Ethereum L2s to cut costs by <strong>17x</strong> -- keeping money where it belongs: with families.</p>
+    </section>
+
+    <!-- Impact Metrics -->
+    <div class="container">
+      <div class="grid-4">
+        <div class="card impact-card">
+          <div class="impact-value">$48B</div>
+          <div class="impact-label">Annual African Remittance Market</div>
+          <div class="impact-sub">Growing 6% YoY</div>
+        </div>
+        <div class="card impact-card">
+          <div class="impact-value">8.9%</div>
+          <div class="impact-label">Average Traditional Fee</div>
+          <div class="impact-sub">Highest in the world</div>
+        </div>
+        <div class="card impact-card">
+          <div class="impact-value highlight-green">0.5%</div>
+          <div class="impact-label">AfriPay Fee</div>
+          <div class="impact-sub">17x cheaper</div>
+        </div>
+        <div class="card impact-card">
+          <div class="impact-value highlight-green">$4.3B</div>
+          <div class="impact-label">Potential Annual Savings</div>
+          <div class="impact-sub">If all African remittances used AfriPay</div>
+        </div>
+      </div>
+
+      <!-- Fee Comparison Banner -->
+      <div class="card fee-banner">
+        <div class="fee-banner-title">Fee Comparison: Sending $200 to Africa</div>
+        <div class="fee-banner-grid">
+          <div class="fee-banner-item fee-banner-afripay">
+            <div class="fee-banner-provider">AfriPay</div>
+            <div class="fee-banner-bar-container">
+              <div class="fee-banner-bar bar-afripay" style="width:5.6%"></div>
+            </div>
+            <div class="fee-banner-cost green-text">$1.00 <span class="fee-pct">(0.5%)</span></div>
+          </div>
+          <div class="fee-banner-item">
+            <div class="fee-banner-provider">Mobile Money</div>
+            <div class="fee-banner-bar-container">
+              <div class="fee-banner-bar bar-mobile" style="width:40%"></div>
+            </div>
+            <div class="fee-banner-cost red-text">$12.00 <span class="fee-pct">(6%)</span></div>
+          </div>
+          <div class="fee-banner-item">
+            <div class="fee-banner-provider">Western Union</div>
+            <div class="fee-banner-bar-container">
+              <div class="fee-banner-bar bar-wu" style="width:56%"></div>
+            </div>
+            <div class="fee-banner-cost red-text">$15.80 <span class="fee-pct">(7.9%)</span></div>
+          </div>
+          <div class="fee-banner-item">
+            <div class="fee-banner-provider">Bank Transfer</div>
+            <div class="fee-banner-bar-container">
+              <div class="fee-banner-bar bar-bank" style="width:89%"></div>
+            </div>
+            <div class="fee-banner-cost red-text">$25.00 <span class="fee-pct">(12.5%)</span></div>
+          </div>
+        </div>
+        <div class="fee-banner-savings">You save <strong>$16.80</strong> per $200 transfer vs Western Union &mdash; that's <strong>$201/year</strong> for monthly transfers</div>
+      </div>
+
+      <!-- Main Grid: Send Form + Quick Agent List -->
+      <div class="grid">
+        <!-- Send Remittance Form -->
+        <div class="card">
+          <div class="card-title">
+            <div class="card-icon green">&#x27A4;</div>
+            Send Remittance
+          </div>
+          <form id="remittance-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>From Country</label>
+                <select id="from-country">
+                  <option value="NG">Nigeria</option>
+                  <option value="ZA">South Africa</option>
+                  <option value="KE">Kenya</option>
+                  <option value="GH">Ghana</option>
+                  <option value="EG">Egypt</option>
+                  <option value="ET">Ethiopia</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>To Country</label>
+                <select id="to-country">
+                  <option value="KE">Kenya</option>
+                  <option value="GH">Ghana</option>
+                  <option value="NG">Nigeria</option>
+                  <option value="UG">Uganda</option>
+                  <option value="TZ">Tanzania</option>
+                  <option value="ZW">Zimbabwe</option>
+                  <option value="SN">Senegal</option>
+                  <option value="RW">Rwanda</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Amount (USD)</label>
+              <input type="number" id="amount" placeholder="100.00" min="1" max="10000" value="200">
+            </div>
+            <div class="form-group">
+              <label>Recipient Phone / ID</label>
+              <input type="text" id="recipient" placeholder="+254 712 345 678">
+            </div>
+            <button type="submit" class="btn btn-primary">Send via AfriPay</button>
+          </form>
+
+          <!-- Fee Comparison -->
+          <div class="fee-comparison" id="fee-comparison">
+            <div style="font-weight:700; margin-bottom:12px; font-size:14px;">Live Fee Comparison for $<span id="compare-amount">200</span></div>
+            <div class="fee-row highlight">
+              <div>
+                <div class="fee-provider">AfriPay</div>
+                <div class="fee-savings">Save $<span id="savings">16.80</span> vs Western Union</div>
+                <div class="fee-bar afripay" style="width:20px;"></div>
+              </div>
+              <div class="fee-amount" style="color:var(--green);">$<span id="afripay-fee">1.00</span></div>
+            </div>
+            <div class="fee-row traditional">
+              <div>
+                <div class="fee-provider">Western Union</div>
+                <div class="fee-expensive">7.9% average</div>
+                <div class="fee-bar western" style="width:100px;"></div>
+              </div>
+              <div class="fee-amount" style="color:var(--red);">$<span id="wu-fee">15.80</span></div>
+            </div>
+            <div class="fee-row traditional">
+              <div>
+                <div class="fee-provider">Bank Transfer</div>
+                <div class="fee-expensive">10-15% with FX spread</div>
+                <div class="fee-bar banks" style="width:140px;"></div>
+              </div>
+              <div class="fee-amount" style="color:var(--red);">$<span id="bank-fee">25.00</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Agent Preview -->
+        <div class="card">
+          <div class="card-title">
+            <div class="card-icon gold">&#x1F4CD;</div>
+            Top Cash-Out Agents
+          </div>
+          <div class="agent-list" id="agent-list">
+            <!-- Populated by JS -->
+          </div>
+          <button class="btn btn-secondary" style="margin-top:16px;" onclick="switchTab('agents')">View All 12 Agents &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Transaction History -->
+      <div class="card" style="margin-top:24px;">
+        <div class="card-title">
+          <div class="card-icon green">&#x1F4CB;</div>
+          Recent Transactions
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="tx-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Corridor</th>
+                <th>Amount</th>
+                <th>Fee</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="tx-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== AGENTS VIEW ===================== -->
+  <div class="tab-view" id="view-agents">
+    <div class="container">
+      <!-- Agent Map -->
+      <div class="card">
+        <div class="card-title">
+          <div class="card-icon gold">&#x1F4CD;</div>
+          Cash-Out Agents Across Africa
+        </div>
+        <div class="map-container">
+          <div class="map-africa" id="agent-map">
+            <svg viewBox="0 0 400 440" width="280" height="320" style="opacity:0.15;">
+              <path d="M200,10 L240,20 L270,40 L300,30 L330,50 L350,80 L360,120 L350,160 L370,200 L360,240 L340,280 L310,320 L280,360 L250,390 L220,420 L200,430 L180,420 L160,400 L140,360 L120,320 L130,280 L120,240 L100,200 L90,160 L100,120 L110,80 L130,50 L160,30 L180,20 Z" fill="#007A4D"/>
+            </svg>
+            <div class="map-dot pulse" style="top:32%;left:48%"><span class="tooltip">Nairobi, Kenya - 18 agents</span></div>
+            <div class="map-dot pulse" style="top:25%;left:35%"><span class="tooltip">Lagos, Nigeria - 24 agents</span></div>
+            <div class="map-dot" style="top:60%;left:52%"><span class="tooltip">Johannesburg, SA - 12 agents</span></div>
+            <div class="map-dot" style="top:28%;left:38%"><span class="tooltip">Accra, Ghana - 9 agents</span></div>
+            <div class="map-dot" style="top:35%;left:52%"><span class="tooltip">Kampala, Uganda - 7 agents</span></div>
+            <div class="map-dot" style="top:38%;left:50%"><span class="tooltip">Dar es Salaam, TZ - 6 agents</span></div>
+            <div class="map-dot" style="top:36%;left:46%"><span class="tooltip">Kigali, Rwanda - 4 agents</span></div>
+            <div class="map-dot" style="top:15%;left:28%"><span class="tooltip">Dakar, Senegal - 5 agents</span></div>
+            <div class="map-dot" style="top:65%;left:48%"><span class="tooltip">Cape Town, SA - 6 agents</span></div>
+            <div class="map-dot" style="top:30%;left:42%"><span class="tooltip">Douala, Cameroon - 3 agents</span></div>
+            <div class="map-dot" style="top:18%;left:42%"><span class="tooltip">Cairo, Egypt - 5 agents</span></div>
+            <div class="map-dot" style="top:22%;left:48%"><span class="tooltip">Addis Ababa, Ethiopia - 4 agents</span></div>
+            <div class="map-dot" style="top:34%;left:38%"><span class="tooltip">Kinshasa, DRC - 3 agents</span></div>
+            <div class="map-dot" style="top:40%;left:55%"><span class="tooltip">Mombasa, Kenya - 5 agents</span></div>
+            <div class="map-label">111 Active Agents &bull; 14 Cities</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent Leaderboard -->
+      <div class="card" style="margin-top:24px;">
+        <div class="card-title">
+          <div class="card-icon green">&#x1F3C6;</div>
+          Agent Leaderboard
+        </div>
+        <div class="leaderboard-controls">
+          <input type="text" id="agent-search" placeholder="Filter by country..." class="leaderboard-search">
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="tx-table" id="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Agent Name</th>
+                <th>Country</th>
+                <th>Location</th>
+                <th class="sortable" data-sort="orders">Orders <span class="sort-arrow">&#x25BC;</span></th>
+                <th class="sortable" data-sort="rating">Rating <span class="sort-arrow"></span></th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ANALYTICS VIEW ===================== -->
+  <div class="tab-view" id="view-analytics">
+    <div class="container">
+      <!-- Stats Summary Row -->
+      <div class="grid-4">
+        <div class="card impact-card">
+          <div class="impact-value highlight-green" id="analytics-volume">$284.5K</div>
+          <div class="impact-label">Total Volume Processed</div>
+        </div>
+        <div class="card impact-card">
+          <div class="impact-value highlight-green" id="analytics-orders">1,042</div>
+          <div class="impact-label">Total Orders</div>
+        </div>
+        <div class="card impact-card">
+          <div class="impact-value highlight-green" id="analytics-saved">$0</div>
+          <div class="impact-label">Total Fees Saved</div>
+        </div>
+        <div class="card impact-card">
+          <div class="impact-value">12</div>
+          <div class="impact-label">Active Agents</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid">
+        <!-- Volume by Corridor -->
+        <div class="card">
+          <div class="card-title">
+            <div class="card-icon green">&#x1F4CA;</div>
+            Volume by Corridor
+          </div>
+          <div class="bar-chart" id="corridor-chart">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Monthly Volume Trend -->
+        <div class="card">
+          <div class="card-title">
+            <div class="card-icon gold">&#x1F4C8;</div>
+            Monthly Volume (6 Months)
+          </div>
+          <div class="bar-chart" id="monthly-chart">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Status Distribution + Fee Savings -->
+      <div class="grid" style="margin-top:24px;">
+        <div class="card">
+          <div class="card-title">
+            <div class="card-icon green">&#x1F4CB;</div>
+            Order Status Distribution
+          </div>
+          <div class="status-chart" id="status-chart">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <div class="card-icon gold">&#x1F4B0;</div>
+            Fee Savings Breakdown
+          </div>
+          <div class="savings-breakdown" id="savings-breakdown">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== HOW IT WORKS VIEW ===================== -->
+  <div class="tab-view" id="view-how-it-works">
+    <div class="container">
+      <!-- Flow Diagram -->
+      <div class="card flow-card">
+        <div class="card-title">
+          <div class="card-icon green">&#x2699;</div>
+          How It Works
+        </div>
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="flow-number">1</div>
+            <div class="flow-content">
+              <div class="flow-title">Sender Deposits USDC</div>
+              <div class="flow-desc">Sender deposits stablecoins into the RemittanceVault smart contract. Fee: 0.5% (vs 8.9% traditional).</div>
+            </div>
+          </div>
+          <div class="flow-arrow">&#x2193;</div>
+          <div class="flow-step">
+            <div class="flow-number">2</div>
+            <div class="flow-content">
+              <div class="flow-title">Local Agent Claims Order</div>
+              <div class="flow-desc">A verified agent near the recipient claims the order on-chain. Agents are reputation-scored and staked.</div>
+            </div>
+          </div>
+          <div class="flow-arrow">&#x2193;</div>
+          <div class="flow-step">
+            <div class="flow-number">3</div>
+            <div class="flow-content">
+              <div class="flow-title">Cash / M-Pesa Delivery</div>
+              <div class="flow-desc">Agent delivers cash or mobile money (M-Pesa, Airtel Money) to the recipient. No bank account needed.</div>
+            </div>
+          </div>
+          <div class="flow-arrow">&#x2193;</div>
+          <div class="flow-step">
+            <div class="flow-number">4</div>
+            <div class="flow-content">
+              <div class="flow-title">Settlement + Rewards</div>
+              <div class="flow-desc">Agent confirms delivery, receives USDC from vault. Sender earns AFRI loyalty tokens.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Corridor Pricing Table -->
+      <div class="card" style="margin-top:24px;">
+        <div class="card-title">
+          <div class="card-icon gold">&#x1F30D;</div>
+          Corridor Pricing
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="tx-table">
+            <thead>
+              <tr>
+                <th>Corridor</th>
+                <th>Traditional Fee</th>
+                <th>AfriPay Fee</th>
+                <th>You Save on $200</th>
+                <th>Savings %</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nigeria &rarr; Kenya</td>
+                <td class="red-text">9.2% ($18.40)</td>
+                <td class="green-text">0.40% ($0.80)</td>
+                <td><strong>$17.60</strong></td>
+                <td><span class="status-badge status-completed">95.7%</span></td>
+              </tr>
+              <tr>
+                <td>South Africa &rarr; Zimbabwe</td>
+                <td class="red-text">14.4% ($28.80)</td>
+                <td class="green-text">0.45% ($0.90)</td>
+                <td><strong>$27.90</strong></td>
+                <td><span class="status-badge status-completed">96.9%</span></td>
+              </tr>
+              <tr>
+                <td>Kenya &rarr; Uganda</td>
+                <td class="red-text">8.5% ($17.00)</td>
+                <td class="green-text">0.30% ($0.60)</td>
+                <td><strong>$16.40</strong></td>
+                <td><span class="status-badge status-completed">96.5%</span></td>
+              </tr>
+              <tr>
+                <td>Nigeria &rarr; Ghana</td>
+                <td class="red-text">7.8% ($15.60)</td>
+                <td class="green-text">0.35% ($0.70)</td>
+                <td><strong>$14.90</strong></td>
+                <td><span class="status-badge status-completed">95.5%</span></td>
+              </tr>
+              <tr>
+                <td>Kenya &rarr; Tanzania</td>
+                <td class="red-text">6.5% ($13.00)</td>
+                <td class="green-text">0.30% ($0.60)</td>
+                <td><strong>$12.40</strong></td>
+                <td><span class="status-badge status-completed">95.4%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Smart Contract Architecture -->
+      <div class="card" style="margin-top:24px;">
+        <div class="card-title">
+          <div class="card-icon green">&#x1F4DC;</div>
+          Smart Contract Architecture
+        </div>
+        <div class="architecture-grid">
+          <div class="arch-item">
+            <div class="arch-name">RemittanceVault.sol</div>
+            <div class="arch-desc">Core vault: holds stablecoin deposits, manages order lifecycle (Pending, Claimed, Completed), handles agent payouts.</div>
+          </div>
+          <div class="arch-item">
+            <div class="arch-name">FeeController.sol</div>
+            <div class="arch-desc">Dynamic fee system: 0.5% base fee, volume discounts (down to 0.25%), corridor-specific pricing.</div>
+          </div>
+          <div class="arch-item">
+            <div class="arch-name">AgentRegistry.sol</div>
+            <div class="arch-desc">Local cash-out agent onboarding with country-based discovery and on-chain reputation tracking.</div>
+          </div>
+          <div class="arch-item">
+            <div class="arch-name">AfriToken.sol</div>
+            <div class="arch-desc">AFRI ERC-20 loyalty/governance token, 100M supply. Senders earn 10 AFRI per remittance.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>AfriPay Protocol</strong> &mdash; Built for EthCapeTown 2026</p>
+    <p style="margin-top:8px;">Powered by Ethereum L2s &bull; Stablecoin Remittances &bull; 0.5% Fees &bull; 18 Smart Contracts &bull; 13 Tests Passing</p>
+    <p style="margin-top:8px; font-size:12px; opacity:0.5;">Targeting UN SDG 10c: reduce remittance costs below 3% by 2030. AfriPay achieves 0.5% today.</p>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
