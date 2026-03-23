@@ -245,23 +245,75 @@
         </div>
         <div class="map-container">
           <div class="map-africa" id="agent-map">
-            <svg viewBox="0 0 400 440" width="280" height="320" style="opacity:0.15;">
-              <path d="M200,10 L240,20 L270,40 L300,30 L330,50 L350,80 L360,120 L350,160 L370,200 L360,240 L340,280 L310,320 L280,360 L250,390 L220,420 L200,430 L180,420 L160,400 L140,360 L120,320 L130,280 L120,240 L100,200 L90,160 L100,120 L110,80 L130,50 L160,30 L180,20 Z" fill="#007A4D"/>
+            <svg viewBox="-20 -38 75 80" class="africa-svg" preserveAspectRatio="xMidYMid meet">
+              <!-- Detailed Africa outline using real lon/lat coordinates (lon=x, lat inverted=y) -->
+              <path d="M-17.5,-35.8 L-15,-33 L-13,-30 L-10,-28 L-8,-25 L-5,-24 L-2,-25 L0,-27 L2,-28
+                L5,-30 L8,-32 L10,-35 L12,-36 L15,-35 L18,-34 L20,-33 L22,-32 L25,-30
+                L28,-28 L30,-25 L32,-22 L33,-18 L34,-15 L35,-12 L36,-8 L37,-5
+                L38,-2 L39,0 L40,2 L42,5 L44,8 L45,10 L46,12 L48,11 L50,10
+                L50,8 L51,5 L50,2 L49,0 L48,-2 L47,-5 L45,-8 L42,-10 L40,-12
+                L37,-15 L35,-18 L33,-20 L32,-23 L30,-26 L28,-28 L25,-30
+                M-17.5,-35.8 L-17,-33 L-16,-30 L-16,-27 L-15,-24 L-14,-21 L-13,-18
+                L-12,-15 L-10,-12 L-8,-10 L-7,-7 L-5,-5 L-4,-2 L-2,0 L0,2 L2,5
+                L5,6 L8,5 L10,4 L12,3 L14,2 L16,0 L18,-2 L20,-4 L22,-5 L24,-4
+                L26,-2 L28,0 L30,2 L32,4 L33,5 L34,4 L35,2 L36,0 L37,-2 L38,-4
+                L39,-5 L40,-4 L41,-2 L42,0 L42,2 L41,5 L40,8 L38,10 L36,12
+                L34,14 L32,15 L30,16 L28,18 L27,20 L26,22 L25,24 L26,26 L28,28
+                L30,30 L32,32 L33,34 L32,35 L30,34 L28,33 L26,32 L24,30 L22,28
+                L20,26 L18,25 L16,24 L15,22 L14,20 L13,18 L12,16 L10,14 L8,12
+                L6,10 L4,8 L2,6 L0,5 L-2,4 L-4,3 L-6,2 L-8,1 L-10,0
+                L-12,-1 L-13,-3 L-14,-5 L-15,-8 L-16,-10 L-17,-13 L-17,-16
+                L-16,-18 L-14,-17 L-12,-16 L-10,-16 L-8,-17 L-6,-18 L-5,-20
+                L-7,-22 L-9,-24 L-11,-26 L-13,-28 L-15,-30 L-16,-32 L-17.5,-35.8 Z"
+                fill="#c8e6c9" stroke="#4CAF50" stroke-width="0.5" stroke-linejoin="round"/>
+              <!-- Country borders hint -->
+              <line x1="-17" y1="-18" x2="0" y2="-18" stroke="#a5d6a7" stroke-width="0.3"/>
+              <line x1="10" y1="-10" x2="42" y2="-10" stroke="#a5d6a7" stroke-width="0.3"/>
+              <line x1="15" y1="0" x2="42" y2="0" stroke="#a5d6a7" stroke-width="0.3"/>
+              <!-- City dots with accurate coordinates: lon=x, lat negated=y -->
+              <!-- Cairo: 31.2E, 30.0N -->
+              <circle cx="31.2" cy="-30.0" r="1.2" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="31.2" y="-31.8" text-anchor="middle" class="city-label">Cairo</text>
+              <!-- Dakar: -17.4W, 14.7N -->
+              <circle cx="-17.4" cy="-14.7" r="1.0" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="-14" y="-15.5" text-anchor="start" class="city-label">Dakar</text>
+              <!-- Lagos: 3.4E, 6.5N -->
+              <circle cx="3.4" cy="-6.5" r="1.4" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot pulse-dot"/>
+              <text x="3.4" y="-8.5" text-anchor="middle" class="city-label">Lagos (24)</text>
+              <!-- Accra: -0.2W, 5.6N -->
+              <circle cx="-0.2" cy="-5.6" r="1.0" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="-0.2" y="-7.4" text-anchor="middle" class="city-label">Accra</text>
+              <!-- Douala: 9.7E, 4.0N -->
+              <circle cx="9.7" cy="-4.0" r="0.8" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="9.7" y="-5.5" text-anchor="middle" class="city-label">Douala</text>
+              <!-- Kinshasa: 15.3E, -4.3S -->
+              <circle cx="15.3" cy="4.3" r="0.8" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="15.3" y="2.8" text-anchor="middle" class="city-label">Kinshasa</text>
+              <!-- Addis Ababa: 38.7E, 9.0N -->
+              <circle cx="38.7" cy="-9.0" r="1.0" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="38.7" y="-10.8" text-anchor="middle" class="city-label">Addis Ababa</text>
+              <!-- Nairobi: 36.8E, -1.3S -->
+              <circle cx="36.8" cy="1.3" r="1.4" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot pulse-dot"/>
+              <text x="36.8" y="-0.7" text-anchor="middle" class="city-label">Nairobi (18)</text>
+              <!-- Mombasa: 39.7E, -4.0S -->
+              <circle cx="39.7" cy="4.0" r="1.0" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="42" y="4.0" text-anchor="start" class="city-label">Mombasa</text>
+              <!-- Kampala: 32.6E, 0.3N -->
+              <circle cx="32.6" cy="-0.3" r="0.9" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="32.6" y="-2.0" text-anchor="middle" class="city-label">Kampala</text>
+              <!-- Kigali: 29.9E, -1.9S -->
+              <circle cx="29.9" cy="1.9" r="0.8" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="27" y="2.5" text-anchor="end" class="city-label">Kigali</text>
+              <!-- Dar es Salaam: 39.3E, -6.8S -->
+              <circle cx="39.3" cy="6.8" r="0.9" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="42" y="7.5" text-anchor="start" class="city-label">Dar es Salaam</text>
+              <!-- Johannesburg: 28.0E, -26.2S -->
+              <circle cx="28.0" cy="26.2" r="1.2" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="28.0" y="24.2" text-anchor="middle" class="city-label">Johannesburg (12)</text>
+              <!-- Cape Town: 18.4E, -33.9S -->
+              <circle cx="18.4" cy="33.9" r="1.0" fill="#007A4D" stroke="white" stroke-width="0.4" class="city-dot"/>
+              <text x="18.4" y="36.5" text-anchor="middle" class="city-label">Cape Town</text>
             </svg>
-            <div class="map-dot pulse" style="top:32%;left:48%"><span class="tooltip">Nairobi, Kenya - 18 agents</span></div>
-            <div class="map-dot pulse" style="top:25%;left:35%"><span class="tooltip">Lagos, Nigeria - 24 agents</span></div>
-            <div class="map-dot" style="top:60%;left:52%"><span class="tooltip">Johannesburg, SA - 12 agents</span></div>
-            <div class="map-dot" style="top:28%;left:38%"><span class="tooltip">Accra, Ghana - 9 agents</span></div>
-            <div class="map-dot" style="top:35%;left:52%"><span class="tooltip">Kampala, Uganda - 7 agents</span></div>
-            <div class="map-dot" style="top:38%;left:50%"><span class="tooltip">Dar es Salaam, TZ - 6 agents</span></div>
-            <div class="map-dot" style="top:36%;left:46%"><span class="tooltip">Kigali, Rwanda - 4 agents</span></div>
-            <div class="map-dot" style="top:15%;left:28%"><span class="tooltip">Dakar, Senegal - 5 agents</span></div>
-            <div class="map-dot" style="top:65%;left:48%"><span class="tooltip">Cape Town, SA - 6 agents</span></div>
-            <div class="map-dot" style="top:30%;left:42%"><span class="tooltip">Douala, Cameroon - 3 agents</span></div>
-            <div class="map-dot" style="top:18%;left:42%"><span class="tooltip">Cairo, Egypt - 5 agents</span></div>
-            <div class="map-dot" style="top:22%;left:48%"><span class="tooltip">Addis Ababa, Ethiopia - 4 agents</span></div>
-            <div class="map-dot" style="top:34%;left:38%"><span class="tooltip">Kinshasa, DRC - 3 agents</span></div>
-            <div class="map-dot" style="top:40%;left:55%"><span class="tooltip">Mombasa, Kenya - 5 agents</span></div>
             <div class="map-label">111 Active Agents &bull; 14 Cities</div>
           </div>
         </div>
